@@ -42,3 +42,32 @@ AI_SKIPPER_PROJECT/
 │   └── embedding_model/        # Offline embedding weights
 ├── requirements.txt            # Dependency list
 └── README.md                   # Documentation
+```
+
+## Installation and Deployment
+
+### Prerequisites
+* **Docker**: Required for running the Qdrant instance.
+* **Ollama**: Required for Llama 3.2 local inference.
+* **Python 3.10+**: Recommended environment.
+
+### Setup
+
+1. **Clone the repository and install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+2. Initialize the vector database with regulatory data:
+```bash
+    python src/database_ingestion.py
+```
+3. Execute the antonomous agent.py
+   ```bash
+   python src/main_agent.py
+   ```
+## Performance Optimization
+  To maintain high frame rates on CPU-constrained devices, the system supports OpenVINO quantization. Exporting the YOLOv11 model to OpenVINO format significantly reduces latency and power consumption, which is critical for edge deployment.
+  ```bash
+yolo export model=models/best.pt format=openvino half=True
+  ```
+Current Status: Functional prototype for maritime object detection and rule-based reasoning.
